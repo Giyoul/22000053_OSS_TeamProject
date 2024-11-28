@@ -1,0 +1,83 @@
+/* List 페이지 버튼 스타일 */
+.list-container button {
+	margin-right: 10px;
+}
+
+.add-button {
+	display: block;
+	margin: 0 auto 20px;
+	background-color: #ff9800;
+}
+
+.add-button:hover {
+	background-color: #fb8c00;
+}
+
+/* 삭제 버튼 스타일 */
+button.delete-button {
+	background-color: #f44336; /* 빨간색 */
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button.delete-button:hover {
+	background-color: #d32f2f; /* hover 시 더 진한 빨간색 */
+}
+
+button.edit-button {
+	background-color: #3ede30; /* 빨간색 */
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button.edit-button:hover {
+	background-color: #27af1c; /* hover 시 더 진한 빨간색 */
+}
+
+li div {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+/* 반응형 스타일: 핸드폰 화면 */
+@media (max-width: 768px) {
+	/* 컨테이너의 여백 조정 */
+	.container {
+		padding: 10px;
+	}
+
+	/* 리스트 항목 정렬 변경 */
+	li {
+		flex-direction: column; /* 세로로 정렬 */
+		align-items: flex-start; /* 왼쪽 정렬 */
+	}
+
+	/* 리스트 텍스트와 버튼 간격 */
+	li span {
+		margin-bottom: 10px; /* 버튼과 텍스트 간격 추가 */
+	}
+
+	/* 버튼 정렬 */
+	li div {
+		display: flex;
+		flex-direction: column; /* 버튼 세로 정렬 */
+		width: 100%; /* 가로 폭 채우기 */
+		gap: 10px; /* 버튼 간격 추가 */
+	}
+
+	button {
+		width: 100%; /* 버튼 가로 크기 */
+		text-align: center; /* 텍스트 가운데 정렬 */
+	}
+
+	.add-button {
+		width: 100%; /* Add 버튼도 가로 폭 채우기 */
+	}
+}
