@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+const apiKey = process.env.REACT_APP_API_KEY;
 
 function App() {
   return (
