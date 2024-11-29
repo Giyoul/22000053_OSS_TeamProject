@@ -4,12 +4,14 @@ import MainPage from "../local/MainPage";
 // import Detail from './Detail';
 // import Update from './Update';
 // import Add from './AddBurger'
+import Test from "../local/Test";
 
 export default function Router() {
 	return(
 		<BrowserRouter>
 			<Routes>
-				<Route exact path='/' element={<MainPage />} />
+				<Route path="/" element={<Test />} />
+				{/*<Route exact path='/' element={<MainPage />} />*/}
 				{/*<Route path='/list' element={<List />} />*/}
 				{/*<Route path='/add' element={<Add />}/>*/}
 				{/*<Route path='/detail' element={<Detail />} />*/}
