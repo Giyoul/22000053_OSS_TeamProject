@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./DataManage.css";
 import { executeDataTransfer } from "./DataTransform";
+import "./DataManage.css";
 
 function DataManage() {
 	const [loading, setLoading] = useState(false);
@@ -10,8 +10,6 @@ function DataManage() {
 
 	// 데이터를 Fetch 후 Post
 	const fetchDataAndPost = async () => {
-		if (loading) return; // 이미 로딩 중이면 함수 종료 (중복 호출 방지)
-
 		setLoading(true);
 		setError(null);
 
@@ -52,15 +50,39 @@ function DataManage() {
 		}
 	};
 
+	// currentdata의 날짜를 확인하고 필요시 데이터 처리
+	const checkAndUpdateData = async () => {
+		try {
+			// currentdata에서 최신 데이터를 가져옴
+			const response = await axios.get(
+				"https://6747ce2938c8741641d7b978.mockapi.io/api/currentdata"
+			);
+
+			// 가장 최신 데이터의 time_last_update_utc를 가져옴
+			const latestData = response.data[0];
+			const lastUpdateDate = new Date(latestData.time_last_update_utc);
+
+			// 현재 날짜와 비교하여 다르면 DataTransform을 먼저 실행
+			const today = new Date();
+			if (lastUpdateDate.getUTCDate() !== today.getUTCDate() || lastUpdateDate.getUTCMonth() !== today.getUTCMonth() || lastUpdateDate.getUTCFullYear() !== today.getUTCFullYear()) {
+				// 날짜가 다르면 executeDataTransfer를 먼저 실행
+				executeDataTransfer();
+				fetchDataAndPost(); // DataManage.js의 fetchDataAndPost 실행
+			} else {
+				// 날짜가 오늘이면 DataManage만 실행
+				setData(latestData); // 기존 데이터 그대로 표시
+				alert("오늘의 데이터는 이미 업데이트되었습니다.");
+			}
+		} catch (err) {
+			console.error("Error fetching currentdata:", err);
+			setError("현재 데이터 확인 중 문제가 발생했습니다.");
+		}
+	};
+
 	// 컴포넌트가 마운트될 때 데이터 처리
 	useEffect(() => {
-		const fetchData = async () => {
-			await fetchDataAndPost(); // 데이터 fetch 후 post
-			executeDataTransfer(); // 데이터 전송
-		};
-
-		fetchData();
-	}, []); // 빈 배열을 사용하여 컴포넌트 마운트 시 한 번만 실행
+		checkAndUpdateData(); // 페이지 로드 시 데이터 상태 확인
+	}, []);
 
 	return (
 		<div className="data-manage">
