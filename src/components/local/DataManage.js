@@ -10,6 +10,8 @@ function DataManage() {
 
 	// 데이터를 Fetch 후 Post
 	const fetchDataAndPost = async () => {
+		if (loading) return; // 이미 로딩 중이면 함수 종료 (중복 호출 방지)
+
 		setLoading(true);
 		setError(null);
 
@@ -52,9 +54,13 @@ function DataManage() {
 
 	// 컴포넌트가 마운트될 때 데이터 처리
 	useEffect(() => {
-		fetchDataAndPost();
-		executeDataTransfer();
-	}, []);
+		const fetchData = async () => {
+			await fetchDataAndPost(); // 데이터 fetch 후 post
+			executeDataTransfer(); // 데이터 전송
+		};
+
+		fetchData();
+	}, []); // 빈 배열을 사용하여 컴포넌트 마운트 시 한 번만 실행
 
 	return (
 		<div className="data-manage">
