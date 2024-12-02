@@ -10,7 +10,7 @@ function List() {
 	// 데이터 가져오기
 	useEffect(() => {
 		axios
-			.get("https://6747ce2938c8741641d7b978.mockapi.io/api/data")
+			.get("https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata")
 			.then((response) => setBurgers(response.data))
 			.catch((error) => console.error("Error fetching data:", error));
 	}, []);
@@ -19,7 +19,7 @@ function List() {
 	const handleDelete = (id) => {
 		if (window.confirm("정말로 삭제하시겠습니까?")) {
 			axios
-				.delete(`https://6747ce2938c8741641d7b978.mockapi.io/api/data/${id}`)
+				.delete(`https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata/${id}`)
 				.then(() => {
 					setBurgers((prevBurgers) => prevBurgers.filter((burger) => burger.id !== id));
 					alert("삭제되었습니다.");

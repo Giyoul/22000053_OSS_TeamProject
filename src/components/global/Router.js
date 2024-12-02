@@ -5,13 +5,14 @@ import MainPage from "../local/MainPage";
 // import Update from './Update';
 // import Add from './AddBurger'
 import Test from "../local/Test";
+import DataManage from "../local/DataManage";
 
 export default function Router() {
 	return(
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<Test />} />
-				{/*<Route exact path='/' element={<MainPage />} />*/}
+				<Route path="/datamanage" element={<DataManage />} />
 				{/*<Route path='/list' element={<List />} />*/}
 				{/*<Route path='/add' element={<Add />}/>*/}
 				{/*<Route path='/detail' element={<Detail />} />*/}
