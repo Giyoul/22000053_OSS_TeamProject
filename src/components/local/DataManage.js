@@ -64,9 +64,41 @@ function DataManage() {
 
 			// 현재 날짜와 비교하여 다르면 DataTransform을 먼저 실행
 			const today = new Date();
-			if (lastUpdateDate.getUTCDate() !== today.getUTCDate() || lastUpdateDate.getUTCMonth() !== today.getUTCMonth() || lastUpdateDate.getUTCFullYear() !== today.getUTCFullYear()) {
-				// 날짜가 다르면 executeDataTransfer를 먼저 실행
+			if (
+				lastUpdateDate.getUTCDate() !== today.getUTCDate() ||
+				lastUpdateDate.getUTCMonth() !== today.getUTCMonth() ||
+				lastUpdateDate.getUTCFullYear() !== today.getUTCFullYear()
+			) {
+				// 날짜가 다르면 먼저 lastdata 삭제
+				const lastDataResponse = await axios.get(
+					"https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata"
+				);
+
+				// lastdata에서 id를 가져와서 삭제
+				if (lastDataResponse.data.length > 0) {
+					const lastDataId = lastDataResponse.data[0].id; // 첫 번째 lastdata의 id를 사용
+					await axios.delete(
+						`https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata/${lastDataId}`
+					);
+				}
+
+				// executeDataTransfer 실행
 				executeDataTransfer();
+
+				// currentdata에서 데이터를 삭제하기 전에 데이터를 조회하고 id 값을 사용하여 삭제
+				const dataResponse = await axios.get(
+					"https://6747ce2938c8741641d7b978.mockapi.io/api/currentdata"
+				);
+
+				// currentdata에서 id를 가져와서 삭제
+				if (dataResponse.data.length > 0) {
+					const id = dataResponse.data[0].id; // 첫 번째 currentdata의 id를 사용
+					await axios.delete(
+						`https://6747ce2938c8741641d7b978.mockapi.io/api/currentdata/${id}`
+					);
+				}
+
+				// 데이터 새로 가져오기
 				fetchDataAndPost(); // DataManage.js의 fetchDataAndPost 실행
 			} else {
 				// 날짜가 오늘이면 DataManage만 실행
@@ -78,6 +110,7 @@ function DataManage() {
 			setError("현재 데이터 확인 중 문제가 발생했습니다.");
 		}
 	};
+
 
 	// 컴포넌트가 마운트될 때 데이터 처리
 	useEffect(() => {
