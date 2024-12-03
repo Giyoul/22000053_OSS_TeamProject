@@ -1,75 +1,120 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Chart } from "react-google-charts";
 import "./MainPage.css";
 
-function List() {
-	const [burgers, setBurgers] = useState([]);
-	const navigate = useNavigate();
+function MainPage() {
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-	// 데이터 가져오기
-	useEffect(() => {
-		axios
-			.get("https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata")
-			.then((response) => setBurgers(response.data))
-			.catch((error) => console.error("Error fetching data:", error));
-	}, []);
+    const fetchExchangeRateData = async () => {
+        setLoading(true);
+        setError(null);
 
-	// 삭제 핸들러
-	const handleDelete = (id) => {
-		if (window.confirm("정말로 삭제하시겠습니까?")) {
-			axios
-				.delete(`https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata/${id}`)
-				.then(() => {
-					setBurgers((prevBurgers) => prevBurgers.filter((burger) => burger.id !== id));
-					alert("삭제되었습니다.");
-				})
-				.catch((error) => {
-					console.error("Error deleting data:", error);
-					alert("삭제에 실패했습니다.");
-				});
-		}
-	};
+        try {
+            // 어제와 오늘 데이터를 각각 가져옴
+            const yesterdayResponse = await axios.get(
+                "https://6747ce2938c8741641d7b978.mockapi.io/api/lastdata"
+            );
+            const todayResponse = await axios.get(
+                "https://6747ce2938c8741641d7b978.mockapi.io/api/currentdata"
+            );
 
-	return (
-		<div className="container list-container">
-			<h1>버거킹 메뉴 정보</h1>
-			<div className="button-group">
-				<button className="add-button" onClick={() => navigate("/add")}>
-					Add New Burger
-				</button>
-				<button
-					className="edit-button"
-					onClick={() => navigate("/update", { state: { burgers } })}
-				>
-					Edit All
-				</button>
-			</div>
-			<ul>
-				{burgers.map((burger) => (
-					<li key={burger.id}>
-						<span>
-							{burger.name} - {burger.price}원
-						</span>
-						<div>
-							<button
-								className="secondary"
-								onClick={() => navigate("/detail", { state: { burger } })}
-							>
-								View Details
-							</button>
-							<button
-								className="delete-button"
-								onClick={() => handleDelete(burger.id)}
-							>
-								Delete
-							</button>
-						</div>
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+            if (yesterdayResponse.data.length === 0 || todayResponse.data.length === 0) {
+                setError("어제 또는 오늘 데이터가 없습니다.");
+                setLoading(false);
+                return;
+            }
+
+            const yesterdayRates = yesterdayResponse.data[0].conversion_rates;
+            const todayRates = todayResponse.data[0].conversion_rates;
+
+            // 환율 상승률 계산
+            const rateChanges = Object.keys(todayRates).map((currency) => {
+                const yesterdayRate = yesterdayRates[currency] || 0;
+                const todayRate = todayRates[currency] || 0;
+
+                const changePercentage = yesterdayRate
+                    ? ((todayRate - yesterdayRate) / yesterdayRate) * 100
+                    : 0;
+
+                return {
+                    currency,
+                    changePercentage,
+                };
+            });
+
+            // 상승률 기준으로 정렬
+            const sortedRates = rateChanges.sort(
+                (a, b) => b.changePercentage - a.changePercentage
+            );
+
+            setData(sortedRates);
+        } catch (err) {
+            console.error("Error fetching exchange rate data:", err);
+            setError("데이터를 가져오는 중 문제가 발생했습니다.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchExchangeRateData();
+    }, []);
+
+    const chartData = [
+        ["통화", "상승률 (%)"],
+        ...data.map(({ currency, changePercentage }) => [currency, changePercentage]),
+    ];
+
+    const chartOptions = {
+        title: "환율 상승률",
+        hAxis: {
+            title: "통화",
+        },
+        vAxis: {
+            title: "상승률 (%)",
+        },
+        legend: { position: "none" },
+    };
+
+    return (
+        <div className="main-page">
+            <h1>환율 상승률 순위</h1>
+            {loading && <p>데이터를 가져오는 중입니다...</p>}
+            {error && <p className="error">{error}</p>}
+
+            {!loading && !error && (
+                <>
+                    <table className="rate-table">
+                        <thead>
+                        <tr>
+                            <th>통화</th>
+                            <th>상승률 (%)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {data.map(({ currency, changePercentage }) => (
+                            <tr key={currency}>
+                                <td>{currency}</td>
+                                <td>{changePercentage.toFixed(2)}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+
+                    <Chart
+                        chartType="BarChart"
+                        data={chartData}
+                        options={chartOptions}
+                        width="100%"
+                        height="400px"
+                    />
+                </>
+            )}
+        </div>
+    );
 }
 
-export default List;
+export default MainPage;
