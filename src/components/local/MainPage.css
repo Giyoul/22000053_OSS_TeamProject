@@ -1,97 +1,226 @@
 /* mainpage.css */
 body {
-	font-family: Arial, sans-serif;
+	font-family: 'Arial', sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #f4f4f9;
 	color: #333;
+	line-height: 1.6;
 }
 
 .header {
 	background-color: #4CAF50;
 	color: white;
-	padding: 1rem;
+	padding: 1.5rem;
 	text-align: center;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .main-container {
-	max-width: 800px;
-	margin: 2rem auto;
+	max-width: 900px;
+	margin: 2.5rem auto;
 	background: white;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-	padding: 1rem;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+	border-radius: 16px;
+	padding: 2rem;
+	text-align: center; /* 전체 컨텐츠 가운데 정렬 */
 }
 
 .title {
 	text-align: center;
-	margin-bottom: 1rem;
+	margin: 0 auto 2rem;
+	font-size: 2rem;
+	font-weight: bold;
+	color: #4CAF50;
 }
 
 .exchange-rates {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
+	gap: 1rem;
 }
 
 .rate-card {
-	background: #f9f9f9;
+	background: #ffffff;
 	border: 1px solid #ddd;
-	border-radius: 6px;
-	margin: 0.5rem;
-	padding: 1rem;
-	flex: 1 0 calc(33% - 1rem);
+	border-radius: 12px;
+	padding: 1.5rem;
+	flex: 1 0 calc(30% - 1rem);
 	text-align: center;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rate-card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .rate-card h3 {
-	margin: 0.5rem 0;
+	margin: 1rem 0;
+	font-size: 1.4rem;
+	color: #4CAF50;
 }
 
 .rate-card p {
 	margin: 0;
 	font-size: 1.2rem;
+	color: #555;
 }
 
 .loading {
 	text-align: center;
 	margin-top: 2rem;
-	font-size: 1.2rem;
+	font-size: 1.4rem;
+	color: #4CAF50;
 }
 
 .error {
 	text-align: center;
 	margin-top: 2rem;
-	font-size: 1.2rem;
-	color: red;
+	font-size: 1.4rem;
+	color: #FF6347;
+	font-weight: bold;
 }
 
 .rate-table {
 	width: 100%;
 	border-collapse: collapse;
-	margin-top: 2rem;
+	margin-top: 2.5rem;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .rate-table th,
 .rate-table td {
 	border: 1px solid #ddd;
-	padding: 8px;
+	padding: 12px;
 	text-align: center;
 }
 
 .rate-table th {
-	background-color: #4caf50;
+	background-color: #4CAF50;
 	color: white;
+	font-size: 1.2rem;
+}
+
+.rate-table td {
+	background-color: #fafafa;
+	font-size: 1rem;
+	color: #555;
 }
 
 .chart-container {
-	margin: 2rem auto;
-	max-width: 800px;
+	margin: 3rem auto;
+	max-width: 900px;
+	padding: 1.5rem;
+	background: white;
+	border-radius: 16px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 600px) {
+/* 버튼 스타일링 */
+button {
+	cursor: pointer;
+	border: none;
+	border-radius: 8px;
+	padding: 0.8rem 1.5rem;
+	font-size: 1rem;
+	font-weight: bold;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sort-button {
+	background-color: #4CAF50;
+	color: white;
+	margin-bottom: 1.5rem;
+}
+
+.sort-button:hover {
+	background-color: #45a049;
+	transform: scale(1.05);
+}
+
+.details-button {
+	background-color: #007bff;
+	color: white;
+}
+
+.details-button:hover {
+	background-color: #0056b3;
+	transform: scale(1.05);
+}
+
+.close-button {
+	background-color: #ff4d4d;
+	color: white;
+}
+
+.close-button:hover {
+	background-color: #cc0000;
+	transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+	.rate-card {
+		flex: 1 0 calc(48% - 1rem);
+	}
+
+	.rate-table th,
+	.rate-table td {
+		font-size: 0.9rem;
+		padding: 10px;
+	}
+}
+
+@media (max-width: 480px) {
 	.rate-card {
 		flex: 1 0 calc(100% - 1rem);
 	}
+
+	.rate-table th,
+	.rate-table td {
+		font-size: 0.8rem;
+		padding: 8px;
+	}
+}/* 모달 스타일 */
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
 }
+
+.modal-content {
+	background: white;
+	padding: 2rem;
+	border-radius: 12px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 300px;
+	text-align: center;
+}
+
+.close-button {
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	background-color: #ff4d4d;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.close-button:hover {
+	background-color: #cc0000;
+}
+
