@@ -293,7 +293,7 @@ function MainPage() {
             {error && <p className="error">{error}</p>}
 
             {!loading && !error && (
-                <>
+                <div className={"container-all"}>
                     {/* 차트 보기/숨기기 버튼 */}
                     <button
                         className="chart-toggle-button"
@@ -364,7 +364,7 @@ function MainPage() {
                             </div>
                         </div>
                     )}
-                </>
+                </div>
             )}
 
             {!loading && !error && data.length === 0 && (
