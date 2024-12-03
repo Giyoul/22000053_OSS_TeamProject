@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Chart } from "react-google-charts";
+import {checkAndUpdateData} from "./CheckAndUpdateData";
 import "./MainPage.css";
 
 function MainPage() {
@@ -60,8 +61,18 @@ function MainPage() {
     };
 
     useEffect(() => {
-        fetchExchangeRateData();
+        const initializeData = async () => {
+            try {
+                await checkAndUpdateData(); // 데이터 상태 확인 및 필요시 업데이트
+                await fetchExchangeRateData(); // 데이터를 가져오기
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        initializeData();
     }, []);
+
 
     const chartData = [
         ["통화", "상승률 (%)"],
