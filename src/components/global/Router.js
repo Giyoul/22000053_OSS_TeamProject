@@ -8,7 +8,7 @@ export default function Router() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<MainPage />} /> {/* MainPage를 기본 경로에 연결 */}
-				<Route path="/datamanage" element={<DataManage />} />
+				{/*<Route path="/datamanage" element={<DataManage />} />*/}
 			</Routes>
 		</BrowserRouter>
 	);
