@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainPage from "../local/MainPage";
-import DataManage from "../local/DataManage";
+// import DataManage from "../local/DataManage";
 
 export default function Router() {
 	return (
