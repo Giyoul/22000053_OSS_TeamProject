@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import React from 'react';
 import { scaleQuantize } from '@visx/scale';
 import { Mercator, Graticule } from '@visx/geo';
