@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Chart } from "react-google-charts";
 import { checkAndUpdateData } from "./CheckAndUpdateData";
+import WorldMapChart from "../local/WorldMapChart";
+// import GeoMercator, { GeoMercatorProps } from './WorldMapChart'; // 컴포넌트 파일 이름에 맞게 경로 수정
+// import WorldMapChart from './WorldMapChart';
+
+
 import "./MainPage.css";
 
 function MainPage() {
@@ -161,6 +166,10 @@ function MainPage() {
                     >
                         {showChart ? "차트 숨기기" : "차트 보기"}
                     </button>
+
+                    <WorldMapChart width={1000} height={1000} />
+
+                    {/*<WorldMapChart width={800} height={600} events={true} />*/}
 
                     {showChart && (
                         <div className="chart-container">
