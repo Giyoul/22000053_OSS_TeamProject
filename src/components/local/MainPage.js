@@ -167,9 +167,7 @@ function MainPage() {
                         {showChart ? "차트 숨기기" : "차트 보기"}
                     </button>
 
-                    <WorldMapChart width={1000} height={1000} />
-
-                    {/*<WorldMapChart width={800} height={600} events={true} />*/}
+                    <WorldMapChart width={1000} height={800} chartData={chartData} />
 
                     {showChart && (
                         <div className="chart-container">
