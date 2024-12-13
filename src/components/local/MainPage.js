@@ -8,7 +8,6 @@ function MainPage() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isSortedByABC, setIsSortedByABC] = useState(true);
     const [details, setDetails] = useState(null);
     const [showChart, setShowChart] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -227,14 +226,14 @@ function MainPage() {
         fetchExchangeRateData();
     }, []);
 
-    const toggleSortOrder = () => {
-        const sortedData = [...data].sort((a, b) =>
-            isSortedByABC
-                ? b.changePercentage - a.changePercentage
-                : a.currency.localeCompare(b.currency)
-        );
+    const sortData = (type) => {
+        const sortedData = [...data].sort((a, b) => {
+            if (type === "ABC") return a.currency.localeCompare(b.currency);
+            if (type === "상승률") return b.changePercentage - a.changePercentage;
+            if (type === "하락률") return a.changePercentage - b.changePercentage;
+            return 0;
+        });
         setData(sortedData);
-        setIsSortedByABC(!isSortedByABC);
     };
 
     const handleSearch = (event) => {
@@ -249,7 +248,7 @@ function MainPage() {
     const showDetails = (currency, yesterdayRate, todayRate) => {
         const countryName = currencyNames[currency] || "국가 이름을 찾을 수 없음";
         setDetails({ currency, countryName, yesterdayRate, todayRate });
-        setIsModalOpen(true); // 모달 열기
+        setIsModalOpen(true);
     };
 
     return (
@@ -278,9 +277,17 @@ function MainPage() {
                 <div className="container-all">
                     <div className="left-container">
                         <div className="controls-container">
-                            <button className="sort-button" onClick={toggleSortOrder}>
-                                {isSortedByABC ? "상승률 순으로 정렬" : "ABC 순으로 정렬"}
-                            </button>
+                            <div className="button-group">
+                                <button className="sort-button" onClick={() => sortData("ABC")}>
+                                    ABC 순 정렬
+                                </button>
+                                <button className="sort-button" onClick={() => sortData("상승률")}>
+                                    상승률 순 정렬
+                                </button>
+                                <button className="sort-button" onClick={() => sortData("하락률")}>
+                                    하락률 순 정렬
+                                </button>
+                            </div>
                             <input
                                 type="text"
                                 placeholder="통화 이름 또는 코드 검색"
@@ -324,6 +331,7 @@ function MainPage() {
                             </tbody>
                         </table>
                     </div>
+
                     <div className="right-container">
                         <button
                             className="chart-toggle-button"
