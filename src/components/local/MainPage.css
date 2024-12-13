@@ -1,89 +1,89 @@
-/* mainpage.css */
 body {
 	font-family: 'Arial', sans-serif;
 	margin: 0;
 	padding: 0;
 	background-color: #343131;
-	color: #333;
+	color: #F5F7F8;
 	line-height: 1.6;
 }
 
 .header {
-	background-color: #F4CE14;
-	color: #F5F7F8;
+	background-color: #2C2A29;
+	color: #F4CE14;
 	padding: 1.5rem;
 	text-align: center;
 	border-bottom-left-radius: 12px;
 	border-bottom-right-radius: 12px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 약간 진하게 */
+	font-size: 1.8rem; /* Bold한 글씨 */
+	font-weight: 700; /* 더 두껍게 */
+	letter-spacing: 0.5px; /* 문자 간격 */
 }
 
-.main-container {
-	max-width: 900px;
-	margin: 2.5rem auto;
-	background: #F5F7F8;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-	border-radius: 16px;
-	padding: 2rem;
-	text-align: center; /* 전체 컨텐츠 가운데 정렬 */
-}
-
-.title {
-	text-align: center;
-	margin: 0 auto 2rem;
-	font-size: 2rem;
-	font-weight: bold;
+.api-reference {
+	margin-top: 0.5rem;
+	font-size: 1rem; /* 참고 텍스트 크기 */
 	color: #F4CE14;
+	text-align: center;
+	font-weight: 600; /* 더 두껍게 */
 }
 
-.exchange-rates {
+.api-reference a {
+	color: #FFD700; /* 금색 강조 */
+	text-decoration: none;
+	font-weight: 700;
+}
+
+.api-reference a:hover {
+	text-decoration: underline;
+	color: #FFFFFF; /* 호버 시 밝게 */
+}
+
+.container-all {
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	gap: 1rem;
+	flex-direction: row;
+	gap: 20px;
+	padding: 20px;
+	background-color: #2C2A29;
+	border-radius: 15px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.rate-card {
-	background: #F5F7F8;
-	border: 1px solid #F5F7F8;
+.left-container {
+	flex: 1;
+	background-color: #F5F7F8;
 	border-radius: 12px;
-	padding: 1.5rem;
-	flex: 1 0 calc(30% - 1rem);
-	text-align: center;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	max-height: 80vh;
+	overflow-y: auto; /* 세로 스크롤 유지 */
+	color: #333;
+	font-weight: 500; /* 약간 두껍게 */
 }
 
-.rate-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.right-container {
+	flex: 2;
+	background-color: #F5F7F8;
+	border-radius: 12px;
+	padding: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	color: #333;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 10px;
 }
 
-.rate-card h3 {
-	margin: 1rem 0;
-	font-size: 1.4rem;
-	color: #F4CE14;
-}
-
-.rate-card p {
-	margin: 0;
-	font-size: 1.2rem;
-	color: #555;
-}
-
-.loading {
-	text-align: center;
-	margin-top: 2rem;
-	font-size: 1.4rem;
-	color: #F4CE14;
-}
-
-.error {
-	text-align: center;
-	margin-top: 2rem;
-	font-size: 1.4rem;
-	color: #FF6347;
-	font-weight: bold;
+.chart-container {
+	width: 100%;
+	flex-grow: 1; /* 차트가 남은 공간을 차지 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #F5F7F8;
+	border-radius: 12px;
+	padding: 20px;
 }
 
 .rate-table {
@@ -98,32 +98,30 @@ body {
 .rate-table th,
 .rate-table td {
 	border: 1px solid #645c5c;
-	padding: 6px;
+	padding: 12px;
 	text-align: center;
+	font-size: 1rem;
+	font-weight: 600; /* Bold */
+	line-height: 1.6;
 }
 
 .rate-table th {
 	background-color: #A04747;
 	color: #F5F7F8;
-	font-size: 0.8rem;
+	font-weight: 700; /* 더 Bold */
+	font-size: 1.1rem; /* 글씨 크기 증가 */
 }
 
 .rate-table td {
 	background-color: #F5F7F8;
-	font-size: 0.8rem;
-	color: #555;
+	color: #333;
+	font-size: 1rem;
 }
 
-.chart-container {
-	margin: 3rem auto;
-	max-width: 900px;
-	padding: 1.5rem;
-	background: #F5F7F8;
-	border-radius: 16px;
-	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+.rate-table tr:hover td {
+	background-color: #e0e0e0; /* 행 호버 시 색상 변경 */
 }
 
-/* 버튼 스타일링 */
 button {
 	cursor: pointer;
 	border: none;
@@ -136,7 +134,7 @@ button {
 
 .sort-button {
 	background-color: #D8A25E;
-	color: #000000;
+	color: #333;
 }
 
 .sort-button:hover {
@@ -147,8 +145,9 @@ button {
 .details-button {
 	background-color: #D8A25E;
 	color: white;
-	font-size: 0.8rem;
-
+	font-size: 0.9rem;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
 }
 
 .details-button:hover {
@@ -156,149 +155,123 @@ button {
 	transform: scale(1.05);
 }
 
-.close-button {
-	background-color: #b05353;
+.chart-toggle-button {
+	background-color: #007bff;
 	color: white;
+	padding: 0.8rem 1rem;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	font-size: 1rem;
+	font-weight: bold;
 }
 
-.close-button:hover {
-	background-color: #cc0000;
-	transform: scale(1.05);
+.chart-toggle-button:hover {
+	background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
-	.rate-card {
-		flex: 1 0 calc(48% - 1rem);
-	}
-
-	.rate-table th,
-	.rate-table td {
-		font-size: 0.9rem;
-		padding: 10px;
-	}
-
-	.main-page{
-		padding-left: 20px;
-		padding-right: 20px;
-	}
+.creator-info {
+	background-color: #444; /* 짙은 배경색 */
+	color: #FFD700; /* 금색 강조 */
+	text-align: center;
+	padding: 1.5rem;
+	font-size: 1.1rem;
+	border-bottom: 3px solid #F4CE14;
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+	font-weight: bold;
 }
 
-@media (max-width: 480px) {
-	.rate-card {
-		flex: 1 0 calc(100% - 1rem);
-	}
-
-	.rate-table th,
-	.rate-table td {
-		font-size: 0.8rem;
-		padding: 8px;
-	}
-}/* 모달 스타일 */
-
-@media (min-width: 769px){
-	.main-page{
-		padding-left: 200px; /* PC 버전에서 좌우 여백 추가 */
-		padding-right: 200px;
-	}
+.creator-info h2 {
+	margin: 0 0 0.5rem 0;
+	font-size: 1.8rem;
+	color: #F4CE14;
+	font-weight: 700;
+	letter-spacing: 0.8px;
 }
 
+.creator-info p {
+	margin: 0;
+	font-size: 1.2rem;
+	color: #F5F7F8;
+	font-weight: 500;
+}
+
+.creator-name {
+	font-weight: 700;
+	color: #FFD700;
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.creator-id {
+	color: #A9A9A9;
+	font-style: italic;
+	font-weight: 600;
+}
 .modal {
+	display: block; /* 모달 보이기 */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #ffffff; /* 흰색 배경 */
+	padding: 30px; /* 여백 증가 */
+	box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
+	border-radius: 12px; /* 둥근 모서리 */
+	z-index: 1001; /* 항상 위에 표시 */
+	width: 90%; /* 화면 크기에 따라 동적 크기 */
+	max-width: 400px; /* 최대 크기 제한 */
+}
+
+.modal-content {
+	font-family: 'Arial', sans-serif; /* 글꼴 설정 */
+	font-size: 16px; /* 기본 글꼴 크기 */
+	line-height: 1.6; /* 가독성을 위한 줄 간격 */
+	color: #333; /* 텍스트 색상 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.modal-content h3 {
+	margin-top: 0; /* 헤더 상단 여백 제거 */
+	font-size: 1.8rem; /* 헤더 크기 증가 */
+	color: #444; /* 헤더 텍스트 색상 */
+	font-weight: 700; /* Bold */
+	text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+}
+
+.modal-content p {
+	margin: 10px 0; /* 문단 간 여백 */
+	font-size: 1rem; /* 글씨 크기 */
+	color: #555; /* 텍스트 색상 */
+}
+
+.modal button {
+	display: block;
+	margin: 20px auto 0; /* 버튼을 중앙에 정렬 */
+	padding: 10px 20px;
+	font-size: 14px;
+	background: #007bff; /* 파란색 배경 */
+	color: white; /* 흰색 텍스트 */
+	border: none;
+	border-radius: 8px; /* 버튼 둥근 모서리 */
+	cursor: pointer;
+	transition: background 0.3s ease, transform 0.2s ease;
+	font-weight: bold; /* 더 Bold */
+	text-transform: uppercase; /* 대문자 변환 */
+	letter-spacing: 0.8px; /* 문자 간격 */
+}
+
+.modal button:hover {
+	background: #0056b3; /* 호버 시 어두운 파란색 */
+	transform: scale(1.05); /* 살짝 확대 효과 */
+}
+
+.modal-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1000;
+	background: rgba(0, 0, 0, 0.5); /* 투명한 검은색 배경 */
+	backdrop-filter: blur(5px); /* 블러 효과 추가 */
+	z-index: 1000; /* 모달 바로 아래 배경 */
+	transition: all 0.3s ease; /* 블러 효과 애니메이션 */
 }
-
-.modal-content {
-	background: white;
-	padding: 2rem;
-	border-radius: 12px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	width: 300px;
-	text-align: center;
-}
-
-.close-button {
-	margin-top: 1rem;
-	padding: 0.5rem 1rem;
-	background-color: #b05353;
-	color: white;
-	border: none;
-	border-radius: 8px;
-	cursor: pointer;
-}
-
-.close-button:hover {
-	background-color: #cc0000;
-}
-
-h1 {
-	margin-top: 30px;
-	font-size: 30px;
-	text-align: center;
-	color: #ffffff;
-}
-
-.chart-toggle-button{
-	margin-right: 1rem;
-}
-
-.container-all{
-	padding: 20px;
-	background-color: #504a4a;
-	border-radius: 15px;
-}
-
-.controls-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
-}
-
-.search-group {
-	display: flex;
-	align-items: center;
-	margin-left: auto; /* 오른쪽 끝으로 정렬 */
-}
-
-.search-input {
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-right: 8px;
-}
-
-.search-button {
-	padding: 8px 12px;
-	border: none;
-	background-color: #007bff;
-	color: white;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.search-button:hover {
-	background-color: #0056b3;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
