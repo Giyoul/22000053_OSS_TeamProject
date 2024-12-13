@@ -254,16 +254,17 @@ function MainPage() {
     return (
         <div className={`main-page ${isModalOpen ? "blur-background" : ""}`}>
             <header className="header">
-                <h1>국가 별 전날 대비 환율 상승률</h1>
+                <h1 className={"country-name"}>국가 별 전날 대비 환율 상승률</h1>
                 <p className="api-reference">
                     Reference: <a href="https://www.exchangerate-api.com/" target="_blank"
                                   rel="noopener noreferrer">ExchangeRate-API</a>
                 </p>
             </header>
 
+            <div className="container">
             <section className="creator-info">
-                <h2>제작자 정보</h2>
-                <p>
+                <h2 className="maker-name">제작자 정보</h2>
+                <p className="maker-name">
                     <span className="creator-name">조성준</span> (<span
                     className="creator-id">21800690</span>) &nbsp;|&nbsp;
                     <span className="creator-name">김기영</span> (<span className="creator-id">22000053</span>)
@@ -314,7 +315,7 @@ function MainPage() {
                                     <td>{item.koreanName}</td>
                                     <td>{item.changePercentage}</td>
                                     <td>
-                                        <button
+                                        <button className="detail-button"
                                             onClick={() =>
                                                 showDetails(
                                                     item.currency,
@@ -361,8 +362,8 @@ function MainPage() {
                                         changePercentage,
                                     ]),
                                 ]}
-                                width={1000}
-                                height={800}
+                                width={930}
+                                height={700}
                             />
                         )}
                     </div>
@@ -381,6 +382,7 @@ function MainPage() {
                     </div>
                 </>
             )}
+            </div>
         </div>
     );
 }

@@ -13,7 +13,7 @@ body {
 
 .header {
 	background-color: #2C2A29;
-	color: #F4CE14;
+	color: #ffba0c;
 	padding: 1rem;
 	text-align: center;
 	border-bottom-left-radius: 12px;
@@ -26,20 +26,21 @@ body {
 
 .api-reference {
 	margin-top: 0.3rem;
+	margin-bottom: 0.3rem;
 	font-size: 0.9rem;
-	color: #F4CE14;
-	text-align: center;
+	color: #ffba0c;
+	text-align: left;
 	font-weight: 500;
 }
 
 .api-reference a {
-	color: #FFD700; /* 클릭 전후 동일한 색상 */
+	color: #ffba0c; /* 클릭 전후 동일한 색상 */
 	text-decoration: none;
 	font-weight: bold;
 }
 
 .api-reference a:visited {
-	color: #FFD700; /* 보라색 제거 */
+	color: #ffba0c; /* 보라색 제거 */
 }
 
 .container-all {
@@ -51,7 +52,7 @@ body {
 	background-color: #2C2A29;
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	height: calc(100vh - 160px); /* 헤더와 기타 섹션 높이를 제외한 공간 */
+	height: calc(100vh - 300px); /* 헤더와 기타 섹션 높이를 제외한 공간 */
 	overflow: hidden;
 	min-width: 800px;
 }
@@ -90,7 +91,7 @@ body {
 
 .sort-button {
 	padding: 6px 10px;
-	background-color: #D8A25E;
+	background-color: #f3975f;
 	color: #333;
 	border-radius: 6px;
 	font-size: 0.8rem;
@@ -101,8 +102,18 @@ body {
 	text-align: center;
 }
 
+.detail-button{
+	padding: 6px 10px;
+	border-radius: 7px;
+}
+
+.detail-button:hover{
+	background-color: #cccccc;
+	cursor: pointer;
+}
+
 .sort-button:hover {
-	background-color: #be8a49;
+	background-color: #d57f4a;
 	transform: scale(1.05);
 }
 
@@ -119,10 +130,13 @@ body {
 	height: 100%;
 }
 
-
+.container{
+	margin: 30px;
+	margin-top: 10px;
+}
 .chart-toggle-button {
-	background-color: #007bff;
-	color: white;
+	background-color: #f3975f;
+	color: black;
 	padding: 0.5rem 0.8rem;
 	border-radius: 6px;
 	font-size: 0.8rem;
@@ -131,11 +145,13 @@ body {
 	max-width: 300px;
 	text-align: center;
 	transition: background-color 0.3s ease, transform 0.2s ease;
+	margin-bottom: 10px;
 }
 
 .chart-toggle-button:hover {
-	background-color: #0056b3;
+	background-color: #d57f4a;
 	transform: scale(1.05);
+	cursor: pointer;
 }
 
 .chart-container {
@@ -211,15 +227,20 @@ body {
 	transform: scale(1.05);
 }
 
+.maker-name {
+	margin: 2px;
+}
+
 .creator-info {
 	background-color: #444;
-	color: #FFD700;
+	color: rgba(255, 186, 12, 0.8);
 	text-align: center;
 	padding: 0.8rem;
 	font-size: 0.9rem;
-	border-top: 2px solid #F4CE14;
+	border-top: 2px solid #ffba0c;
 	box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
 	font-weight: bold;
+	border-radius: 15px;
 }
 
 .modal {
@@ -287,4 +308,8 @@ body {
 	backdrop-filter: blur(5px);
 	z-index: 1000;
 	transition: all 0.3s ease;
+}
+
+.country-name{
+	margin-bottom: 5px;
 }
