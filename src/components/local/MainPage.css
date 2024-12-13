@@ -148,64 +148,66 @@ body {
 	border-radius: 10px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 .rate-table {
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 0.5rem;
 	border-radius: 10px;
 	overflow: hidden;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	font-size: 0.85rem;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 테이블 그림자 */
+	font-size: 1rem; /* 기본 글씨 크기 */
+	background-color: #f8f9fa; /* 테이블 배경 */
 }
 
 .rate-table th,
 .rate-table td {
-	border: 1px solid #645c5c;
-	padding: 10px; /* 행 높이 증가 */
-	text-align: center;
+	border: 1px solid #ddd; /* 부드러운 테두리 */
+	padding: 12px; /* 패딩 증가 */
+	text-align: center; /* 모든 텍스트 가운데 정렬 */
+	font-weight: 600; /* 텍스트 볼드 */
 }
 
 .rate-table th {
-	background-color: #A04747;
-	color: #F5F7F8;
-	font-weight: 600;
-	font-size: 0.9rem;
+	background-color: #4a5568; /* 헤더 배경색 */
+	color: #ffffff; /* 헤더 텍스트 색상 */
+	font-size: 1.1rem; /* 헤더 글씨 크기 증가 */
+	font-weight: 700; /* 헤더 글씨 볼드 */
 }
 
 .rate-table td {
-	background-color: #F5F7F8;
-	color: #333;
-	font-size: 0.85rem;
+	color: #2d3748; /* 텍스트 색상 */
+	font-size: 1rem; /* 글씨 크기 */
+	font-weight: 500; /* 약간의 볼드 */
+	text-align: center; /* 가운데 정렬 */
+}
+
+.rate-table tr:nth-child(odd) {
+	background-color: #ffffff; /* 홀수 행 배경 */
+}
+
+.rate-table tr:nth-child(even) {
+	background-color: #f1f3f5; /* 짝수 행 배경 */
 }
 
 .rate-table tr:hover td {
-	background-color: #e0e0e0;
-}
-
-button {
-	cursor: pointer;
-	border: none;
-	border-radius: 6px;
-	padding: 0.6rem 1rem;
-	font-size: 0.9rem;
-	font-weight: bold;
-	transition: background-color 0.3s ease, transform 0.2s ease;
+	background-color: #e2e8f0; /* 호버 시 배경 강조 */
+	color: #1a202c; /* 텍스트 색상 변경 */
+	font-weight: 700; /* 텍스트 더 볼드 */
 }
 
 .data-button {
-	background-color: #5cb85c;
+	background-color: #5cb85c; /* 초록색 버튼 */
 	color: white;
 	border-radius: 4px;
-	padding: 6px 12px;
-	font-size: 0.8rem;
-	font-weight: bold;
+	padding: 8px 14px; /* 버튼 크기 증가 */
+	font-size: 0.9rem; /* 글씨 크기 증가 */
+	font-weight: bold; /* 글씨 볼드 */
 	cursor: pointer;
 	transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .data-button:hover {
-	background-color: #4cae4c;
+	background-color: #4cae4c; /* 초록색 강조 */
 	transform: scale(1.05);
 }
 
