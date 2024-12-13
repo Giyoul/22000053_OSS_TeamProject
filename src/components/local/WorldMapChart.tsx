@@ -200,7 +200,7 @@ const getColorForRateChange = (rateChange: number) => {
 	if (rateChange < -1) return '#ff0000'; // -1.0 이하 빨간색
 	if (rateChange < -0.5) return '#ff4f4f'; // -1.0 ~ -0.5 구간
 	if (rateChange < 0) return '#ff7f7f'; // -0.5 ~ 0 구간
-	if (rateChange < 0.5) return '#7ed9ee'; // 0 ~ 0.5 구간
+	if (rateChange < 0.5) return '#74d5ff'; // 0 ~ 0.5 구간
 	if (rateChange < 1) return '#00b2ff'; // 0.5 ~ 1.0 구간
 	if (rateChange > 1) return '#0059ff';
 	return '#808080';
