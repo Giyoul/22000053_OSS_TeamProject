@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { Chart } from "react-google-charts";
 import WorldMapChart from "../local/WorldMapChart";
@@ -12,6 +12,8 @@ function MainPage() {
     const [showChart, setShowChart] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+
 
     const currencyNames = {
         AED: "아랍에미리트 디르함",
@@ -224,6 +226,8 @@ function MainPage() {
 
     useEffect(() => {
         fetchExchangeRateData();
+
+
     }, []);
 
     const sortData = (type) => {
@@ -362,8 +366,8 @@ function MainPage() {
                                         changePercentage,
                                     ]),
                                 ]}
-                                width={930}
-                                height={700}
+                                width={800}
+                                height={600}
                             />
                         )}
                     </div>

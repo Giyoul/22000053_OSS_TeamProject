@@ -9,6 +9,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden; /* 전체 스크롤 방지 */
+	min-width: 1660px;
 }
 
 .header {
@@ -128,6 +129,7 @@ body {
 	align-items: center;
 	justify-content: flex-start;
 	height: 100%;
+	width: 100%;
 }
 
 .container{
@@ -312,4 +314,9 @@ body {
 
 .country-name{
 	margin-bottom: 5px;
+}
+
+.main-page{
+	width: 100%;
+	transition: width 0.3s ease; /* 크기 변경 애니메이션 */
 }
